@@ -1,6 +1,6 @@
-public class LinkList {
+public class CircularLinkList {
 	Node head;
-	public LinkList() {
+	public CircularLinkList() {
 		head = new Node();
 		head.next = null;
 	}
@@ -8,13 +8,18 @@ public class LinkList {
 	public void add(int data) {
 		Node ptr = new Node();
 		ptr.data = data;
-		ptr.next = null;
+		ptr.next = head.next;
 		
-		Node curr = head;
-		while (curr.next != null) {
-			curr = curr.next;
+		Node curr = head.next;
+		if (curr == null) {
+			head.next = ptr;
+			ptr.next = ptr;
+		} else {
+			while (curr.next != head.next) {
+				curr = curr.next;
+			}
+			curr.next = ptr;
 		}
-		curr.next = ptr;
 	}
 	
 	public void delete(int data) {
@@ -30,38 +35,27 @@ public class LinkList {
 		}
 	}
 	
-	public void invert() {
-		Node pre = null;
-		Node curr = null;
-		Node forward = head.next;
-		while (forward != null) {
-			pre = curr;
-			curr = forward;
-			forward = forward.next;
-			curr.next = pre;
-		}
-		head.next = curr;
-	}
-	
 	public void listAll() {
 		Node curr = head.next;
+		boolean flag = true;
 		System.out.print("head->");
-		while (curr != null) {
+		while ((curr != null && curr != head.next) || flag) {
 			System.out.print(curr.data + "->");
 			curr = curr.next;
+			flag = false;
 		}
 		System.out.println();
 	}
+	
 	public static void main(String[] args) {
-		LinkList link = new LinkList();
+		CircularLinkList link = new CircularLinkList();
 		link.add(2);
 		link.add(3);
 		link.add(4);
 		link.add(5);
 		link.listAll();
 		link.delete(3);
-		link.listAll();
-		link.invert();
+		link.delete(5);
 		link.listAll();
 	}
 }
