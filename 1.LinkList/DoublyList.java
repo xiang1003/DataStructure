@@ -22,13 +22,17 @@ public class DoublyList {
 	
 	public void delete(int data) {
 		DoublyNode curr = head.rlink;
-		while (curr != null) {
+		boolean flag = true;
+		while (curr != head.rlink || flag) {
 			if (curr.data == data) {
 				curr.llink.rlink = curr.rlink;
 				curr.rlink.llink = curr.llink;
+				if (head.rlink == curr) head.rlink = curr.rlink;
+				if (head.llink == curr) head.llink = curr.llink;
 				break;
 			}
 			curr = curr.rlink;
+			flag = false;
 		}
 	}
 	
@@ -49,8 +53,9 @@ public class DoublyList {
 		link.add(4);
 		link.add(5);
 		link.listAll();
-		link.delete(3);
+		link.delete(2);
 		link.delete(5);
+		link.delete(6);
 		link.listAll();
 	}
 }
