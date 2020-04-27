@@ -12,7 +12,7 @@ public class Stack {
 	}
 	
 	public void push(int d) {
-		if (top == size-1) {
+		if (isFull()) {
 			System.out.println("Stack is full");
 		} else {
 			s[++top] = d;
@@ -20,13 +20,21 @@ public class Stack {
 	}
 	
 	public int pop() throws Exception {
-		if (top == -1) {
+		if (isEmpty()) {
 			throw new Exception("Stack is empty");
 		} else {
 			int res = s[top];
 			s[top--] = 0;
 			return res;
 		}
+	}
+	
+	public boolean isEmpty() {
+		return top == -1 ? true : false;
+	}
+	
+	public boolean isFull() {
+		return top == size-1 ? true : false;
 	}
 	
 	public void listAll() {
