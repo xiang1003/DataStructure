@@ -11,7 +11,7 @@ public class Queue {
 	}
 	
 	public void enqueue(int d) {
-		if (front == rear && flag) {
+		if (isFull()) {
 			System.out.println("Queue is full");
 		} else {
 			s[rear] = d;
@@ -21,7 +21,7 @@ public class Queue {
 	}
 	
 	public int dequeue() throws Exception {
-		if (front == rear && !flag) throw new Exception("Queue is empty");
+		if (isEmpty()) throw new Exception("Queue is empty");
 		else {			
 			int res = s[front];
 			s[front] = 0;
@@ -31,6 +31,14 @@ public class Queue {
 		}
 	}
 	
+	public boolean isEmpty() {
+        return (front == rear && !flag);
+    }
+    
+    public boolean isFull() {
+        return (front == rear && flag);
+    }
+
 	public void listAll() {
 		for (int i = 0; i < s.length; i++) {
 			System.out.print(s[i] + " ");
@@ -48,6 +56,7 @@ public class Queue {
 		q.enqueue(4);
 		q.enqueue(5);
 		q.enqueue(6);
+		q.enqueue(7);
 		q.listAll();
 	}
 }
