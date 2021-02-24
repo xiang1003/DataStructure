@@ -71,12 +71,18 @@ public class Recursive {
 		System.out.println(Sum(5));
 		System.out.println(Fib(10));
 		System.out.println(bin(5,2));
-		System.out.println(Ackerman(2,2));
+		System.out.println(Ackerman(3,2));
 		System.out.println(gcd(4,7));
 		System.out.println(exp(2,7));
 		Hanoi(3,'a','b','c');
 		
 		int[] arr = {1,2,3};
 		perm(arr,0,2);
+		
+		System.out.println(Ackerman(3,2));
+		System.out.println(Ackerman(2,4));
+		
+		System.out.println(bin(9,3));
+		System.out.println(bin(9,5));
 	}
 }
